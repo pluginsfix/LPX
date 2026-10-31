@@ -1,5 +1,6 @@
 package pluginsfix.lpx.command;
 
+import pluginsfix.lpx.LPX;
 import pluginsfix.lpx.command.impl.AlertsCommand;
 import pluginsfix.lpx.command.impl.GuiCommand;
 import pluginsfix.lpx.command.impl.KickCommand;
@@ -8,6 +9,7 @@ import pluginsfix.lpx.command.impl.ReloadCommand;
 import pluginsfix.lpx.command.impl.VerboseCommand;
 import pluginsfix.lpx.command.impl.WatchdogCommand;
 import pluginsfix.lpx.core.LPXCore;
+import pluginsfix.lpx.text.Placeholder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -76,18 +78,30 @@ public class CommandRouter implements CommandExecutor, TabCompleter {
         }
         SubCommand subCommand = commands.get(args[0].toLowerCase());
         if (subCommand == null) {
-            sender.sendMessage(core.sZ(new Object[0]).BM(new Object[0]).Vl(new Object[0]));
+            if (LPX.getInstance() != null) {
+                LPX.getInstance().getMessages().send(sender, "invalid-arguments");
+            } else {
+                sender.sendMessage(core.sZ(new Object[0]).BM(new Object[0]).Vl(new Object[0]));
+            }
             return true;
         }
         if (!sender.hasPermission(subCommand.getPermission())) {
-            sender.sendMessage(
-                core.sZ(new Object[0]).BM(new Object[0]).VH(new Object[0])
-                    .replace("%permission%", subCommand.getPermission())
-            );
+            if (LPX.getInstance() != null) {
+                LPX.getInstance().getMessages().send(sender, "no-permission", Placeholder.of("permission", subCommand.getPermission()));
+            } else {
+                sender.sendMessage(
+                    core.sZ(new Object[0]).BM(new Object[0]).VH(new Object[0])
+                        .replace("%permission%", subCommand.getPermission())
+                );
+            }
             return true;
         }
         if (subCommand.isPlayerOnly() && !(sender instanceof Player)) {
-            sender.sendMessage(core.sZ(new Object[0]).BM(new Object[0]).V8(new Object[0]) + " " + ChatColor.RED + "Only players can use this command.");
+            if (LPX.getInstance() != null) {
+                LPX.getInstance().getMessages().send(sender, "player-only");
+            } else {
+                sender.sendMessage(net.md_5.bungee.api.ChatColor.of("#FB8808") + "▶ " + ChatColor.WHITE + "Команда доступна только игрокам.");
+            }
             return true;
         }
         subCommand.execute(sender, args);
@@ -121,9 +135,11 @@ public class CommandRouter implements CommandExecutor, TabCompleter {
     }
 
     private void sendHelp(CommandSender sender) {
-        String prefix = core.sZ(new Object[0]).BM(new Object[0]).V8(new Object[0]);
-        sender.sendMessage(prefix + " " + ChatColor.LIGHT_PURPLE + "LPX " + ChatColor.GRAY + "v" + core.getPlugin().getDescription().getVersion());
-        sender.sendMessage("");
+        if (LPX.getInstance() != null) {
+            LPX.getInstance().getMessages().send(sender, "help");
+            return;
+        }
+        sender.sendMessage(net.md_5.bungee.api.ChatColor.of("#FFFF00") + "▶ " + ChatColor.WHITE + "Доступные команды " + net.md_5.bungee.api.ChatColor.of("#FFFF00") + "LPX" + ChatColor.WHITE + ":");
         for (SubCommand subCommand : uniqueCommands()) {
             if (!sender.hasPermission(subCommand.getPermission())) {
                 continue;
@@ -134,8 +150,8 @@ public class CommandRouter implements CommandExecutor, TabCompleter {
             String usage = subCommand.getUsage();
             String usageSuffix = usage == null || usage.isEmpty() ? "" : " " + usage;
             sender.sendMessage(
-                ChatColor.DARK_GRAY + "- " + ChatColor.WHITE + "/lpx " + subCommand.getName() + usageSuffix
-                    + ChatColor.GRAY + " - " + subCommand.getDescription()
+                "  " + net.md_5.bungee.api.ChatColor.of("#FFFF00") + "◆ " + ChatColor.WHITE + "/lpx " + subCommand.getName() + usageSuffix
+                    + ChatColor.DARK_GRAY + " — " + ChatColor.WHITE + subCommand.getDescription()
             );
         }
     }
@@ -160,6 +176,9 @@ public class CommandRouter implements CommandExecutor, TabCompleter {
                 return ChatColor.translateAlternateColorCodes('&', fromSpigot);
             }
         } catch (Throwable ignored) {
+        }
+        if (LPX.getInstance() != null) {
+            return LPX.getInstance().getMessages().get("unknown-command");
         }
         return core.sZ(new Object[0]).BM(new Object[0]).VJ(new Object[0]);
     }

@@ -48,6 +48,38 @@ alerts-hover:
   - "&#FFFF00▶ &fОписание: &#FFFF00{description}"
   - "&#FB8808◆ &fИнформация: &#FFFF00{infos}"
 
+kick-usage:
+  - "[message] &#FB8808▶ &fИспользование: &#FFFF00/lpx kick <игрок> [причина]"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+player-offline:
+  - "[message] &#FB8808▶ &fИгрок &#FFFF00{player} &fсейчас не в сети!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+kick-success:
+  - "[message] &#FFFF00◆ &fИгрок &#FFFF00{player} &fбыл успешно кикнут!"
+  - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP"
+
+network-info-disabled:
+  - "[message] &#FB8808▶ &fСборщик сетевой статистики &#FB8808отключён&f!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+network-info-enabled:
+  - "[message] &#FFFF00◆ &fСборщик сетевой статистики &#FFFF00включён&f!"
+  - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP"
+
+verbose-disabled:
+  - "[message] &#FB8808▶ &fСборщик статистики отключён. Используйте &#FFFF00/lpx info&f!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+watchdog-disabled:
+  - "[message] &#FB8808▶ &fМониторинг Netty Watchdog &#FB8808отключён&f!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+watchdog-enabled:
+  - "[message] &#FFFF00◆ &fМониторинг Netty Watchdog &#FFFF00включён&f!"
+  - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP"
+
 help:
   - "[message] "
   - "[message] &#FFFF00▶ &fДоступные команды &#FFFF00LPX&f:"
@@ -56,6 +88,7 @@ help:
   - "[message]   &#FFFF00◆ &f/lpx alerts &8— &fпереключить режим оповещений"
   - "[message]   &#FFFF00◆ &f/lpx reload &8— &fперезагрузить конфигурацию"
   - "[message]   &#FFFF00◆ &f/lpx kick <игрок> [причина] &8— &fкикнуть нарушителя"
-  - "[message]   &#FFFF00◆ &f/lpx stats &8— &fстатистика пакетов игрока"
+  - "[message]   &#FFFF00◆ &f/lpx info &8— &fсбор сетевой статистики"
+  - "[message]   &#FFFF00◆ &f/lpx verbose &8— &fтекущая сетевая статистика"
   - "[message]   &#FFFF00◆ &f/lpx watchdog &8— &fмониторинг Netty потоков"
   - "[message] "

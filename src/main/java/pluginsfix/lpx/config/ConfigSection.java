@@ -85,7 +85,7 @@ public abstract class ConfigSection {
     }
 
     private String translateColors(String input) {
-        if (input == null) {
+        if (input == null || input.isEmpty()) {
             return "";
         }
 
@@ -99,15 +99,14 @@ public abstract class ConfigSection {
         }
 
         if (supportsHex) {
-            Matcher matcher = HEX_PATTERN.matcher(input);
+            Matcher matcher = Pattern.compile("&#([A-Fa-f0-9]{6})").matcher(input);
+            StringBuffer sb = new StringBuffer();
             while (matcher.find()) {
-                String hex = input.substring(matcher.start(), matcher.end());
-                try {
-                    input = input.replace(hex, net.md_5.bungee.api.ChatColor.of(hex).toString());
-                } catch (Throwable ignored) {
-                }
-                matcher = HEX_PATTERN.matcher(input);
+                String hex = matcher.group(1);
+                matcher.appendReplacement(sb, net.md_5.bungee.api.ChatColor.of("#" + hex).toString());
             }
+            matcher.appendTail(sb);
+            input = sb.toString();
         }
 
         return ChatColor.translateAlternateColorCodes('&', input);

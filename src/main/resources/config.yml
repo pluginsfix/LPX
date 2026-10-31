@@ -1,33 +1,30 @@
-﻿license: "Black-Minecraft.com"
+license: "Black-Minecraft.com"
 force-fallback: false
 
 messages:
-  main-color: "&5"
-  second-color: "&d"
+  main-color: "&#FFFF00"
+  second-color: "&#FB8808"
 
-  prefix: "%main-color%LPX >>"
+  prefix: ""
 
-  kick: "&cYou are sending suspicious packets."
-  kick-alert: "%prefix% %second-color%%player% &7was kicked"
+  kick: "&#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f."
+  kick-alert: "&#FB8808▶ &fИгрок &#FFFF00%player% &fбыл кикнут за &#FB8808подозрительные пакеты&f."
 
-  no-permission: "%prefix% &cInsufficient permissions &7(%permission%)"
-  invalid-arguments: "%prefix% &cInvalid arguments!"
-  injection-failure: "%prefix% &cInjection failure!"
-  update-found: "%prefix% &aAn update was found!"
-  null-address: "%prefix% &cYou are joining with an invalid address!"
-  unknown-command: "Unknown command. Type \"/help\" for help."
+  no-permission: "&#FB8808▶ &fНедостаточно &#FB8808прав &f(%permission%) на выполнение команды!"
+  invalid-arguments: "&#FB8808▶ &fНеверные &#FB8808аргументы &fкоманды!"
+  injection-failure: "&#FB8808▶ &fОшибка внедрения &#FB8808сетевого обработчика&f!"
+  update-found: "&#FFFF00◆ &fНайдено новое обновление &#FFFF00LPX&f!"
+  null-address: "&#FB8808▶ &fВход с недопустимым адресом подключения!"
+  unknown-command: "&#FB8808▶ &fНеизвестная команда. Введите &#FFFF00/help &fдля списка команд."
 
   alerts:
     permission: "lpx.alerts"
-    format: "%prefix% %second-color%%player% &7failed %main-color%%check% %type% &7(%vl%/%max-vl%)"
+    format: "&#FB8808▶ &fИгрок &#FFFF00%player% &fпровалил проверку &#FFFF00%check% %type% &8(&#FB8808%vl%&7/&#FFFF00%max-vl%&8)"
     hover:
-      - "%main-color%Description:"
-      - "%second-color%%description%"
-      - ""
-      - "%main-color%Infos: %infos%"
-      - ""
-    enabled: "%prefix% &aAlerts enabled"
-    disabled: "%prefix% &cAlerts disabled"
+      - "&#FFFF00▶ &fОписание: &#FFFF00%description%"
+      - "&#FB8808◆ &fИнформация: &#FFFF00%infos%"
+    enabled: "&#FFFF00◆ &fОповещения защиты &#FFFF00включены&f!"
+    disabled: "&#FB8808▶ &fОповещения защиты &#FB8808выключены&f!" 
 
 options:
   silent-failures: false
@@ -69,8 +66,8 @@ options:
     disable-delay: 3000
     alerts: true
     permission: "lpx.alerts.printer"
-    join: "%prefix% %second-color%%player% &7joined printer mode (%mode%)"
-    leave: "%prefix% %second-color%%player% &7left printer mode"
+    join: "&#FFFF00◆ &fИгрок &#FFFF00%player% &fвошёл в режим принтера &8(&#FFFF00%mode%&8)"
+    leave: "&#FB8808▶ &fИгрок &#FFFF00%player% &fвышел из режима принтера"
 
   mechanics:
     nether-portal-delay: 1000
@@ -105,13 +102,13 @@ options:
 discord:
   enabled: false
   url: ""
-  color: "#00FFFF"
+  color: "#FB8808"
   content:
-    - "**Player**: %player%"
-    - "**Check**: %check% %type%"
+    - "**Игрок**: %player%"
+    - "**Проверка**: %check% %type%"
     - "**VL**: %vl%/%max-vl%"
-    - "**Infos**: %infos%"
-    - "**Description**: %description%"
+    - "**Информация**: %infos%"
+    - "**Описание**: %description%"
 
 packet-logger:
   heavy-packet-threshold: 5000000
@@ -153,7 +150,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         automatic: true
         max: 98304
@@ -164,7 +161,7 @@ checks:
       max-vl: 5
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       buffer:
         max: 3
         multiply: 0.25
@@ -175,7 +172,7 @@ checks:
       max-vl: 5
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       buffer:
         max: 3
         multiply: 0.25
@@ -186,14 +183,14 @@ checks:
       max-vl: 5
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     d:
       enabled: true
       punish: true
       max-vl: 2
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
   item:
     a:
       enabled: true
@@ -201,14 +198,14 @@ checks:
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     b:
       enabled: true
       punish: true
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 50
         max-modern: 100
@@ -218,7 +215,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         remove-ascii: true
     d:
@@ -227,7 +224,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max-bytes: 255
         resolved-tolerance: 3
@@ -238,7 +235,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         clear: true
         occurrences:
@@ -252,7 +249,7 @@ checks:
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         replace: true
     g:
@@ -261,7 +258,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max-translate: 1
         max-keybind: 1
@@ -271,7 +268,7 @@ checks:
       max-vl: 2
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         countThreshold: 768
         max-depth: 64
@@ -281,7 +278,7 @@ checks:
       max-vl: 2
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max-list: 12
         max-array: 12
@@ -292,14 +289,14 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     b:
       enabled: true
       punish: true
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 127
         min: 0
@@ -309,7 +306,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 3000
     d:
@@ -318,7 +315,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 16384
     e:
@@ -327,7 +324,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         blacklist:
           - "run_command"
@@ -338,7 +335,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 64
     g:
@@ -347,7 +344,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
   place:
     a:
       enabled: true
@@ -355,7 +352,7 @@ checks:
       max-vl: 10
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       buffer:
         max: 5
         multiply: 0.5
@@ -368,7 +365,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 70
     c:
@@ -377,7 +374,7 @@ checks:
       max-vl: 5
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       buffer:
         max: 5
         multiply: 0.5
@@ -391,7 +388,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending too many packets. :<'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808превышен лимит пакетов&f.'
       options:
         max: 1100
     b:
@@ -400,7 +397,7 @@ checks:
       max-vl: 6
       min-vl: 3
       punish-commands:
-        - 'lpx kick %player% &cYou are sending too many packets. >:'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808превышен лимит пакетов&f.'
       options:
         limits:
           ANIMATION:
@@ -498,7 +495,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending too many packets. :o'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808превышен лимит пакетов&f.'
       options:
         max: 20
         reset-interval: 100
@@ -511,7 +508,7 @@ checks:
       max-vl: 4
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending too many packets. o:'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808превышен лимит пакетов&f.'
       options:
         max: 13
         big-threshold: 4000
@@ -522,7 +519,7 @@ checks:
       max-vl: 2
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending too many packets. :$'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808превышен лимит пакетов&f.'
       options:
         max: 8
     g:
@@ -531,7 +528,7 @@ checks:
       max-vl: 2
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending too many packets. :&'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808превышен лимит пакетов&f.'
       options:
         max: 70
         interval: 250
@@ -545,7 +542,7 @@ checks:
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     b:
       enabled: true
       punish: true
@@ -556,7 +553,7 @@ checks:
         multiply: 0.5
         decay: 0.05
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         delay: 2000
         hard: false
@@ -567,7 +564,7 @@ checks:
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 300000
     d:
@@ -576,7 +573,7 @@ checks:
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 1000000
   payload:
@@ -586,14 +583,14 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     b:
       enabled: true
       punish: true
       max-vl: 2
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         delay: 1000
         max: 15
@@ -603,28 +600,28 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     d:
       enabled: true
       punish: true
       max-vl: 5
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     e:
       enabled: true
       punish: true
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     f:
       enabled: true
       punish: true
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
   book:
     a:
       enabled: true
@@ -632,7 +629,7 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max: 15
   tab:
@@ -642,7 +639,7 @@ checks:
       max-vl: 10
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         starts:
           - "/to "
@@ -660,7 +657,7 @@ checks:
       max-vl: 1
       min-vl: -1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
         max-length: 256
         characters:
@@ -678,9 +675,9 @@ checks:
       max-vl: 3
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
-        commands: #CREDITS TO: https://github.com/2lstudios-mc/ExploitFixer
+        commands:
           - "//calc"
           - "//calculate"
           - "//eval"
@@ -710,11 +707,11 @@ checks:
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
     b:
       enabled: true
       punish: true
       max-vl: 1
       min-vl: 1
       punish-commands:
-        - 'lpx kick %player% &cYou are sending suspicious packets.'
+        - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'

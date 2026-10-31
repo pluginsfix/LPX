@@ -3,7 +3,7 @@ main: pluginsfix.lpx.LPX
 author: pluginsfix
 version: 3.7.11
 api-version: 1.13
-description: Blazingly stable anti exploit 1.8-1.21
+description: Защита сервера от пакетных эксплойтов и атак
 softdepend:
   - ProtocolLib
   - ProtocolSupport
@@ -14,4 +14,4 @@ softdepend:
 folia-supported: true
 commands:
   lpx:
-    description: Main command
+    description: Основная команда управления LPX

@@ -22,13 +22,42 @@ public class MainGui implements GuiCallback {
     public void initialize(Player player, PaginatedGui page) {
         String versionName = PacketEvents.getAPI().getServerManager().getVersion().getReleaseName();
 
+        GuiItem filler = GuiItem.of(
+            ItemBuilder.tC(new Object[]{Material.GRAY_STAINED_GLASS_PANE})
+                .Ef(new Object[]{0L, " "})
+                .dk(new Object[0])
+        );
+        page.fillAll(filler);
+
         page.setItem(
             0,
             0,
             GuiItem.of(
-                ItemBuilder.tC(new Object[]{Material.WATER_BUCKET})
-                    .Ef(new Object[]{0L, ChatColor.GRAY + "Server version: " + versionName})
+                ItemBuilder.tC(new Object[]{Material.BEACON})
+                    .Ef(new Object[]{0L, "&#FFFF00◆ &fИнформация о сервере"})
+                    .UN(new Object[]{0L, new String[]{
+                        "&fВерсия сервера: &#FFFF00" + versionName,
+                        "&fСтатус защиты: &#FFFF00Активна"
+                    }})
                     .dk(new Object[0])
+            )
+        );
+
+        page.setItem(
+            0,
+            2,
+            GuiItem.of(
+                ItemBuilder.tC(new Object[]{Material.COMPARATOR})
+                    .Ef(new Object[]{0L, "&#FFFF00◆ &fСетевой мониторинг"})
+                    .UN(new Object[]{0L, new String[]{
+                        "&fОтслеживание Netty-потоков и пакетов",
+                        "&fНажмите для переключения Watchdog"
+                    }})
+                    .dk(new Object[0]),
+                (InventoryClickEvent clickEvent) -> {
+                    player.performCommand("lpx watchdog");
+                    player.closeInventory();
+                }
             )
         );
 
@@ -38,7 +67,11 @@ public class MainGui implements GuiCallback {
                 4,
                 GuiItem.of(
                     ItemBuilder.tC(new Object[]{Material.NETHER_STAR})
-                        .Ef(new Object[]{0L, ChatColor.DARK_PURPLE + "Reload Config"})
+                        .Ef(new Object[]{0L, "&#FFFF00◆ &fПерезагрузить конфигурацию"})
+                        .UN(new Object[]{0L, new String[]{
+                            "&fНажмите для перезагрузки параметров",
+                            "&fиз файлов &#FFFF00config.yml &fи &#FFFF00messages.yml"
+                        }})
                         .dk(new Object[0]),
                     (InventoryClickEvent clickEvent) -> {
                         player.performCommand(RELOAD_COMMAND);
@@ -52,8 +85,10 @@ public class MainGui implements GuiCallback {
                 4,
                 GuiItem.of(
                     ItemBuilder.tC(new Object[]{Material.BARRIER})
-                        .Ef(new Object[]{0L, ChatColor.DARK_PURPLE + "Reload Config"})
-                        .UN(new Object[]{0L, new String[]{ChatColor.RED + "" + ChatColor.BOLD + "No permission"}})
+                        .Ef(new Object[]{0L, "&#FB8808▶ &fПерезагрузка недоступна"})
+                        .UN(new Object[]{0L, new String[]{
+                            "&#FB8808Недостаточно прав для выполнения"
+                        }})
                         .dk(new Object[0])
                 )
             );
@@ -61,10 +96,32 @@ public class MainGui implements GuiCallback {
 
         page.setItem(
             0,
+            6,
+            GuiItem.of(
+                ItemBuilder.tC(new Object[]{Material.BELL})
+                    .Ef(new Object[]{0L, "&#FFFF00◆ &fОповещения защиты"})
+                    .UN(new Object[]{0L, new String[]{
+                        "&fПереключение вывода срабатываний в чат",
+                        "&fНажмите для переключения"
+                    }})
+                    .dk(new Object[0]),
+                (InventoryClickEvent clickEvent) -> {
+                    player.performCommand("lpx alerts");
+                    player.closeInventory();
+                }
+            )
+        );
+
+        page.setItem(
+            0,
             8,
             GuiItem.of(
                 ItemBuilder.tC(new Object[]{Material.BOOK})
-                    .Ef(new Object[]{0L, ChatColor.DARK_PURPLE + "Open Check Settings"})
+                    .Ef(new Object[]{0L, "&#FFFF00◆ &fНастройки проверок"})
+                    .UN(new Object[]{0L, new String[]{
+                        "&fПросмотр и тонкая настройка",
+                        "&fвсех модулей детекции LPX"
+                    }})
                     .dk(new Object[0]),
                 (InventoryClickEvent clickEvent) -> openCheckSettings(player)
             )
@@ -77,7 +134,7 @@ public class MainGui implements GuiCallback {
             .Gi(new Object[]{this})
             .Hd(new Object[]{core.sJ(new Object[0])})
             .NS(new Object[]{1, 9})
-            .nu(new Object[]{ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "LPX " + ChatColor.LIGHT_PURPLE + "Main"})
+            .nu(new Object[]{net.md_5.bungee.api.ChatColor.of("#FFFF00") + "" + ChatColor.BOLD + "LPX " + ChatColor.DARK_GRAY + "| " + ChatColor.WHITE + "Главное меню"})
             .ft(new Object[]{0L});
     }
 

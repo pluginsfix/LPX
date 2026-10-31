@@ -1,14 +1,17 @@
 package pluginsfix.lpx.command.impl;
+
+import pluginsfix.lpx.LPX;
 import pluginsfix.lpx.command.SubCommand;
 import pluginsfix.lpx.core.LPXCore;
 import io.github.retrooper.packetevents.util.folia.FoliaScheduler;
 import pluginsfix.lpx.network.WatchdogMonitor;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+
 public class WatchdogCommand extends SubCommand {
     public WatchdogCommand(LPXCore core) {
-        super(core, "watchdog", "lpx.debug", "Toggle Netty watchdog monitor", false, "");
+        super(core, "watchdog", "lpx.debug", "Переключить Netty Watchdog мониторинг", false, "");
     }
+
     @Override
     protected void executeCommand(CommandSender sender, String[] args) {
         FoliaScheduler.getAsyncScheduler().runNow(core.getPlugin(), task -> {
@@ -16,10 +19,18 @@ public class WatchdogCommand extends SubCommand {
             boolean alreadyRunning = monitor.tW(new Object[0]);
             monitor.tN(new Object[]{0L});
             if (alreadyRunning) {
-                sendPrefixedMessage(sender, ChatColor.RED + "Netty watchdog disabled.");
+                if (LPX.getInstance() != null) {
+                    LPX.getInstance().getMessages().send(sender, "watchdog-disabled");
+                } else {
+                    sender.sendMessage(net.md_5.bungee.api.ChatColor.of("#FB8808") + "▶ " + org.bukkit.ChatColor.WHITE + "Мониторинг Netty Watchdog " + net.md_5.bungee.api.ChatColor.of("#FB8808") + "отключён" + org.bukkit.ChatColor.WHITE + ".");
+                }
                 return;
             }
-            sendPrefixedMessage(sender, ChatColor.GREEN + "Netty watchdog enabled.");
+            if (LPX.getInstance() != null) {
+                LPX.getInstance().getMessages().send(sender, "watchdog-enabled");
+            } else {
+                sender.sendMessage(net.md_5.bungee.api.ChatColor.of("#FFFF00") + "◆ " + org.bukkit.ChatColor.WHITE + "Мониторинг Netty Watchdog " + net.md_5.bungee.api.ChatColor.of("#FFFF00") + "включён" + org.bukkit.ChatColor.WHITE + ".");
+            }
         });
     }
 }

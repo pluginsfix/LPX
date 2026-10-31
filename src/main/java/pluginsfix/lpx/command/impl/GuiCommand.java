@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 public class GuiCommand extends SubCommand {
     public GuiCommand(LPXCore core) {
-        super(core, "gui", "lpx.gui", "Open LPX GUI", true, "");
+        super(core, "gui", "lpx.gui", "Открыть главное меню LPX", true, "");
     }
     @Override
     protected void executeCommand(CommandSender sender, String[] args) {
