@@ -19,17 +19,18 @@ import org.jetbrains.annotations.Nullable;
 public class PlayerRegistryImpl implements PlayerRegistry {
     private final LPXCore core;
     private final Map<User, ProtocolPlayer> playersByUser;
+    private final ConnectionListener connectionListener;
     private static String[] legacyState;
     public PlayerRegistryImpl(int ignoredA, LPXCore core, int ignoredB, char ignoredC) {
         this.playersByUser = new ConcurrentHashMap<>();
         this.core = core;
-        ConnectionListener connectionListener = new ConnectionListener(core, this);
+        this.connectionListener = new ConnectionListener(core, this);
         PacketEvents.getAPI().getEventManager().registerListener(connectionListener);
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            User user = PacketEvents.getAPI().getPlayerManager().getUser(onlinePlayer);
-            if (user != null && user.getChannel() instanceof Channel channel) {
-                connectionListener.injectUser(user, channel);
-            }
+    }
+    @Override
+    public void injectUser(User user, Object channel) {
+        if (channel instanceof Channel nettyChannel) {
+            connectionListener.injectUser(user, nettyChannel);
         }
     }
     @Override

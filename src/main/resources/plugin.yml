@@ -5,6 +5,7 @@ version: 3.7.11
 api-version: 1.13
 description: Защита сервера от пакетных эксплойтов и атак
 softdepend:
+  - packetevents
   - ProtocolLib
   - ProtocolSupport
   - ViaVersion

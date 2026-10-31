@@ -76,6 +76,7 @@ public class LPXCore implements LPX {
             return;
         }
         disabled = true;
+        PluginBootstrap.reset();
         try {
             if (guiManagerImpl != null) {
                 for (Player p : guiManagerImpl.getOpenedInventoriesSnapshot().keySet()) {
@@ -218,7 +219,7 @@ public class LPXCore implements LPX {
     public void oK(Object[] args) {
         @SuppressWarnings("unchecked")
         Supplier<String> supplier = (Supplier<String>) args[1];
-        if (configManager.Bw(new Object[0]).Yk(new Object[0])) {
+        if (configManager != null && configManager.Bw(new Object[0]) != null && configManager.Bw(new Object[0]).Yk(new Object[0])) {
             getLogger().info(supplier.get());
         }
     }

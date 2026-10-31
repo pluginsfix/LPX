@@ -13,4 +13,5 @@ public interface PlayerRegistry {
     public Optional<ProtocolPlayer> getPlayer(Player var1);
     @Nullable
     public ProtocolPlayer addPlayer(User var1, ProtocolPlayer var2);
+    void injectUser(User user, Object channel);
 }

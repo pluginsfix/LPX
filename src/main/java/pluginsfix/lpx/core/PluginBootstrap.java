@@ -25,6 +25,9 @@ public class PluginBootstrap {
     private static boolean bootstrapped;
     public PluginBootstrap() {
     }
+    public static void reset() {
+        bootstrapped = false;
+    }
     public void q(LPXCore core) {
         if (bootstrapped) {
             return;
@@ -63,6 +66,12 @@ public class PluginBootstrap {
         PacketEvents.getAPI().getEventManager().registerListener(new PreViaPacketListener(dispatcher));
         PacketEvents.getAPI().getEventManager().registerListener(new PacketHandler(core, dispatcher, 0L));
         Bukkit.getServicesManager().register(LPX.class, core, (Plugin) core.getPlugin(), ServicePriority.Normal);
+        for (org.bukkit.entity.Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            com.github.retrooper.packetevents.protocol.player.User user = PacketEvents.getAPI().getPlayerManager().getUser(onlinePlayer);
+            if (user != null && user.getChannel() != null) {
+                core.getRegistry().injectUser(user, user.getChannel());
+            }
+        }
     }
     private static RuntimeException a(RuntimeException runtimeException) {
         return runtimeException;
