@@ -631,7 +631,7 @@ checks:
       punish-commands:
         - 'lpx kick %player% &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f.'
       options:
-        max: 15
+        max: 100
   tab:
     a:
       enabled: true

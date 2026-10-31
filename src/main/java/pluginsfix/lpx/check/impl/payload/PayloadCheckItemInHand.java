@@ -27,13 +27,14 @@ public class PayloadCheckItemInHand extends AbstractCheckT<WrapperPlayClientPlug
         if (bukkitPlayer == null) {
             return CheckResult.ALLOW;
         }
-        ItemStack itemInHand = bukkitPlayer.getInventory().getItemInHand();
-        if (isBook(itemInHand)) {
+        ItemStack mainHand = bukkitPlayer.getInventory().getItemInMainHand();
+        ItemStack offHand = bukkitPlayer.getInventory().getItemInOffHand();
+        if (isBook(mainHand) || isBook(offHand)) {
             return CheckResult.ALLOW;
         }
-        String material = itemInHand == null || itemInHand.getType() == null
+        String material = mainHand == null || mainHand.getType() == null
             ? "null"
-            : itemInHand.getType().name();
+            : mainHand.getType().name();
         AZ(new Object[]{
             packet,
             token,

@@ -21,6 +21,9 @@ public class ConnectionListener extends PacketListenerAbstract {
         this.H = core;
         this.z = registry;
     }
+    public void injectUser(User user, Channel channel) {
+        KN(new Object[]{0L, user, channel});
+    }
     @Override
     public void onUserDisconnect(UserDisconnectEvent event) {
         z.uninject(event.getUser());

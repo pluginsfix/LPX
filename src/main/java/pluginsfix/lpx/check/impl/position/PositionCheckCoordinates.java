@@ -5,7 +5,9 @@ import pluginsfix.lpx.api.check.options.CheckOptions;
 import pluginsfix.lpx.api.player.ProtocolPlayer;
 import pluginsfix.lpx.check.base.AbstractCheckT;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPlayerFlying;
+import io.github.retrooper.packetevents.util.folia.FoliaScheduler;
 import pluginsfix.lpx.util.Timer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -72,8 +74,15 @@ public class PositionCheckCoordinates extends AbstractCheckT<WrapperPlayClientPl
             }
         });
         if (L) {
-            player.teleport(world.getSpawnLocation());
-            protocolPlayer.updateLastTeleport();
+            FoliaScheduler.getEntityScheduler().run(
+                (Entity) player,
+                getOptions().getCheckOptions().getPlugin(),
+                task -> {
+                    player.teleport(world.getSpawnLocation());
+                    protocolPlayer.updateLastTeleport();
+                },
+                () -> {}
+            );
         }
         sq(new Object[]{player, protocolPlayer, packet, token});
         return CheckResult.DENY;

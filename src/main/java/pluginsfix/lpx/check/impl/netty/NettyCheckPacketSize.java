@@ -4,6 +4,7 @@ import pluginsfix.lpx.api.check.CheckResult;
 import pluginsfix.lpx.api.check.FlagInfo;
 import pluginsfix.lpx.api.check.options.CheckOptions;
 import pluginsfix.lpx.api.player.ProtocolPlayer;
+import pluginsfix.lpx.api.protocol.ReceivedPacket;
 import pluginsfix.lpx.check.base.AbstractCheckT;
 import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.PacketEvents;
@@ -50,7 +51,8 @@ public class NettyCheckPacketSize extends AbstractCheckT<ByteBuf> {
         ProtocolPlayer player = (ProtocolPlayer) args[0];
         ByteBuf buffer = (ByteBuf) args[1];
         long token = (Long) args[2];
-        long packetSize = player.getLastReceivedPacket().getSize();
+        ReceivedPacket lastPacket = player.getLastReceivedPacket();
+        long packetSize = lastPacket != null ? lastPacket.getSize() : 0L;
         double limit = U;
         if (!H) {
             limit *= j;

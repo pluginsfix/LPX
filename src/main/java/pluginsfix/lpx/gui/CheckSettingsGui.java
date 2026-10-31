@@ -320,6 +320,7 @@ public class CheckSettingsGui implements GuiCallback {
             .Gi(new Object[]{this})
             .Hd(new Object[]{core.sJ(new Object[0])})
             .NS(new Object[]{5, 9})
+            .qo(new Object[]{false})
             .nu(new Object[]{net.md_5.bungee.api.ChatColor.of("#FFFF00") + "" + ChatColor.BOLD + "LPX " + ChatColor.DARK_GRAY + "| " + ChatColor.WHITE + "Настройки проверок"})
             .ft(new Object[]{0L});
     }

@@ -4,6 +4,7 @@ import pluginsfix.lpx.api.check.FlagInfo;
 import pluginsfix.lpx.api.check.options.CheckOptions;
 import pluginsfix.lpx.api.check.RepeatedIntervalCounter;
 import pluginsfix.lpx.api.player.ProtocolPlayer;
+import pluginsfix.lpx.api.protocol.ReceivedPacket;
 import pluginsfix.lpx.check.base.AbstractCheckT;
 import com.github.retrooper.packetevents.event.simple.ItemStackDecodeEvent;
 public class ItemCheckItemRate extends AbstractCheckT<ItemStackDecodeEvent> {
@@ -37,7 +38,8 @@ public class ItemCheckItemRate extends AbstractCheckT<ItemStackDecodeEvent> {
         if (player.getPrinterData().isUsingPrinter()) {
             return CheckResult.ALLOW;
         }
-        long packetSize = player.getLastReceivedPacket().getSize();
+        ReceivedPacket lastPacket = player.getLastReceivedPacket();
+        long packetSize = lastPacket != null ? lastPacket.getSize() : 0L;
         double divisor = Math.max(1.0D, o);
         double weight = packetSize / divisor / 4.0D;
         if (weight <= 0.0D) {

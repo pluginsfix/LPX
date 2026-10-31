@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 public class PlayerRegistryImpl implements PlayerRegistry {
@@ -22,7 +23,14 @@ public class PlayerRegistryImpl implements PlayerRegistry {
     public PlayerRegistryImpl(int ignoredA, LPXCore core, int ignoredB, char ignoredC) {
         this.playersByUser = new ConcurrentHashMap<>();
         this.core = core;
-        PacketEvents.getAPI().getEventManager().registerListener(new ConnectionListener(core, this));
+        ConnectionListener connectionListener = new ConnectionListener(core, this);
+        PacketEvents.getAPI().getEventManager().registerListener(connectionListener);
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            User user = PacketEvents.getAPI().getPlayerManager().getUser(onlinePlayer);
+            if (user != null && user.getChannel() instanceof Channel channel) {
+                connectionListener.injectUser(user, channel);
+            }
+        }
     }
     @Override
     public void uninjectAll() {

@@ -25,11 +25,12 @@ public class RotationRangeCheck extends AbstractCheckT<WrapperPlayClientPlayerFl
             return CheckResult.ALLOW;
         }
         float yaw = packet.getLocation().getYaw();
-        if (Math.abs(yaw) > maxYawAbs) {
+        float pitch = packet.getLocation().getPitch();
+        if (Float.isNaN(yaw) || Float.isNaN(pitch) || Float.isInfinite(yaw) || Float.isInfinite(pitch) || Math.abs(pitch) > 90.0F || Math.abs(yaw) > maxYawAbs) {
             AZ(new Object[]{
                 packet,
                 token,
-                new FlagInfo[]{FlagInfo.of("yaw", yaw)}
+                new FlagInfo[]{FlagInfo.of("yaw", yaw), FlagInfo.of("pitch", pitch)}
             });
             return CheckResult.DENY;
         }

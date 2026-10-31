@@ -20,6 +20,7 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
+import org.bukkit.inventory.Inventory;
 
 public class InventoryEventListener implements Listener {
     private final GuiManagerImpl manager;
@@ -37,12 +38,17 @@ public class InventoryEventListener implements Listener {
         }
 
         if (event.getAction() == InventoryAction.COLLECT_TO_CURSOR
-            || event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
+            || event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY
+            || event.getAction() == InventoryAction.HOTBAR_SWAP
+            || event.getAction() == InventoryAction.HOTBAR_MOVE_AND_READD
+            || event.isShiftClick()) {
             event.setCancelled(true);
+            player.updateInventory();
             return;
         }
 
-        if (manager.getCore().getInventoryViewAdapter(player).getTopInventory() != event.getClickedInventory()) {
+        Inventory topInventory = manager.getCore().getInventoryViewAdapter(player).getTopInventory();
+        if (topInventory != event.getClickedInventory()) {
             return;
         }
 
@@ -79,6 +85,7 @@ public class InventoryEventListener implements Listener {
         for (int rawSlot : event.getRawSlots()) {
             if (rawSlot < topSize) {
                 event.setCancelled(true);
+                player.updateInventory();
                 break;
             }
         }
@@ -135,6 +142,9 @@ public class InventoryEventListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void onPluginDisable(PluginDisableEvent event) {
+        if (!event.getPlugin().equals(manager.getPlugin())) {
+            return;
+        }
         Map<Player, GuiInventory> opened = manager.getOpenedInventoriesSnapshot();
         for (Map.Entry<Player, GuiInventory> entry : opened.entrySet()) {
             Player player = entry.getKey();

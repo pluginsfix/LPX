@@ -31,7 +31,7 @@ public class VoidYCheck extends AbstractCheckT<WrapperPlayClientPlayerFlying> {
             return CheckResult.ALLOW;
         }
         double y = packet.getLocation().getY();
-        if (Math.abs(y) <= maxAbsY) {
+        if (!Double.isNaN(y) && !Double.isInfinite(y) && Math.abs(y) <= maxAbsY) {
             return CheckResult.ALLOW;
         }
         teleportDownIfNeeded(protocolPlayer);
@@ -58,9 +58,10 @@ public class VoidYCheck extends AbstractCheckT<WrapperPlayClientPlayerFlying> {
         );
     }
     private void applyCorrection(Player player) {
-        if (player.getLocation().getY() <= maxAbsY) {
+        double currentY = player.getLocation().getY();
+        if (!Double.isNaN(currentY) && !Double.isInfinite(currentY) && Math.abs(currentY) <= maxAbsY) {
             return;
         }
-        player.teleport(player.getLocation().clone().subtract(0.0D, maxAbsY - 5, 0.0D));
+        player.teleport(player.getWorld().getSpawnLocation());
     }
 }

@@ -4,6 +4,7 @@ import pluginsfix.lpx.api.check.FlagInfo;
 import pluginsfix.lpx.api.check.IntervalCounter;
 import pluginsfix.lpx.api.check.options.CheckOptions;
 import pluginsfix.lpx.api.player.ProtocolPlayer;
+import pluginsfix.lpx.api.protocol.ReceivedPacket;
 import pluginsfix.lpx.check.base.AbstractCheckT;
 import com.github.retrooper.packetevents.event.simple.ItemStackDecodeEvent;
 import com.github.retrooper.packetevents.protocol.item.ItemStack;
@@ -50,7 +51,8 @@ public class ItemCheckNBTSize extends AbstractCheckT<ItemStackDecodeEvent> {
         if (nbt == null || !nbt.getTags().containsKey("pages")) {
             return CheckResult.ALLOW;
         }
-        long packetSize = F.getLastReceivedPacket().getSize();
+        ReceivedPacket lastPacket = F.getLastReceivedPacket();
+        long packetSize = lastPacket != null ? lastPacket.getSize() : 0L;
         if (packetSize <= l) {
             return CheckResult.ALLOW;
         }

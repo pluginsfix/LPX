@@ -76,6 +76,14 @@ public class LPXCore implements LPX {
             return;
         }
         disabled = true;
+        try {
+            if (guiManagerImpl != null) {
+                for (Player p : guiManagerImpl.getOpenedInventoriesSnapshot().keySet()) {
+                    p.closeInventory();
+                }
+            }
+        } catch (Throwable ignored) {
+        }
         if (!fromPluginLifecycle) {
             plugin.getServer().getPluginManager().disablePlugin((Plugin) plugin);
         }

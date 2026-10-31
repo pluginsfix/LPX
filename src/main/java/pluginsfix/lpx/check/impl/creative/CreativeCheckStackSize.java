@@ -5,6 +5,7 @@ import pluginsfix.lpx.api.check.options.CheckOptions;
 import pluginsfix.lpx.api.player.ProtocolPlayer;
 import pluginsfix.lpx.check.base.AbstractCheckT;
 import com.github.retrooper.packetevents.protocol.item.ItemStack;
+import com.github.retrooper.packetevents.protocol.item.type.ItemTypes;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientCreativeInventoryAction;
 public class CreativeCheckStackSize extends AbstractCheckT<WrapperPlayClientCreativeInventoryAction> {
     private int l;
@@ -19,11 +20,11 @@ public class CreativeCheckStackSize extends AbstractCheckT<WrapperPlayClientCrea
     protected CheckResult Bu(Object[] args) {
         WrapperPlayClientCreativeInventoryAction packet = (WrapperPlayClientCreativeInventoryAction) args[2];
         ItemStack itemStack = packet.getItemStack();
-        if (itemStack == null) {
+        if (itemStack == null || itemStack.isEmpty() || itemStack.getType() == ItemTypes.AIR) {
             return CheckResult.ALLOW;
         }
         int amount = itemStack.getAmount();
-        if (amount <= l) {
+        if (amount > 0 && amount <= l) {
             return CheckResult.ALLOW;
         }
         AZ(new Object[]{

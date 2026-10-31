@@ -13,7 +13,7 @@ public final class GuiInventoryBuilder {
     private InventoryType inventoryType = InventoryType.CHEST;
     private int rows = 6;
     private int columns = 9;
-    private boolean reopenOnClose = true;
+    private boolean reopenOnClose = false;
     private GuiManagerImpl manager;
     private GuiCallback callback;
     private GuiInventory parent;

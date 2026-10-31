@@ -16,7 +16,7 @@ public abstract class AbstractRecipeCheckT<T> extends AbstractCheckT<T> {
     @SuppressWarnings("unchecked")
     public CheckResult Bu(Object[] args) {
         T packet = (T) args[2];
-        if (B == null) {
+        if (B == null || B.isEmpty()) {
             return CheckResult.ALLOW;
         }
         int recipeId = F6(new Object[]{packet});

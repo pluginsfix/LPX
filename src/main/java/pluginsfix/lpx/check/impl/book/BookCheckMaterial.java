@@ -22,13 +22,14 @@ public class BookCheckMaterial extends AbstractCheckT<WrapperPlayClientEditBook>
         if (bukkitPlayer == null) {
             return CheckResult.ALLOW;
         }
-        ItemStack itemInHand = bukkitPlayer.getInventory().getItemInHand();
-        if (isBook(itemInHand)) {
+        ItemStack mainHand = bukkitPlayer.getInventory().getItemInMainHand();
+        ItemStack offHand = bukkitPlayer.getInventory().getItemInOffHand();
+        if (isBook(mainHand) || isBook(offHand)) {
             return CheckResult.ALLOW;
         }
-        String materialName = itemInHand == null || itemInHand.getType() == null
+        String materialName = mainHand == null || mainHand.getType() == null
             ? "null"
-            : itemInHand.getType().name();
+            : mainHand.getType().name();
         AZ(new Object[]{
             args[2],
             0L,

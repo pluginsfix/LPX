@@ -13,7 +13,7 @@ public class BookCheckPageCount extends AbstractCheckT<WrapperPlayClientEditBook
     }
     @Override
     public void loadOptions() {
-        maxPages = j_(new Object[0]).getInt(kD(new Object[]{"max", 0L}), 15);
+        maxPages = j_(new Object[0]).getInt(kD(new Object[]{"max", 0L}), 100);
     }
     @Override
     protected CheckResult Bu(Object[] args) {
