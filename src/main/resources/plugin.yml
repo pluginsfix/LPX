@@ -1,0 +1,17 @@
+name: LPX
+main: pluginsfix.lpx.LPX
+author: pluginsfix
+version: 3.7.11
+api-version: 1.13
+description: Blazingly stable anti exploit 1.8-1.21
+softdepend:
+  - ProtocolLib
+  - ProtocolSupport
+  - ViaVersion
+  - ViaBackwards
+  - ViaRewind
+  - Geyser-Spigot
+folia-supported: true
+commands:
+  lpx:
+    description: Main command

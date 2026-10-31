@@ -1,0 +1,61 @@
+no-permission:
+  - "[message] &#FB8808▶ &fНедостаточно &#FB8808прав &f({permission}) на выполнение команды!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+invalid-arguments:
+  - "[message] &#FB8808▶ &fНеверные &#FB8808аргументы &fкоманды!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+player-only:
+  - "[message] &#FB8808▶ &fДанная команда доступна &#FB8808только игрокам&f!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+kick:
+  - "[message] &#FB8808▶ &fВы были кикнуты: &#FB8808обнаружены подозрительные пакеты&f."
+
+kick-alert:
+  - "[message] &#FB8808▶ &fИгрок &#FFFF00{player} &fбыл кикнут за &#FB8808подозрительные пакеты&f."
+
+injection-failure:
+  - "[message] &#FB8808▶ &fОшибка внедрения &#FB8808сетевого обработчика&f!"
+
+update-found:
+  - "[message] &#FFFF00◆ &fДоступно новое обновление &#FFFF00LPX&f!"
+  - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP"
+
+null-address:
+  - "[message] &#FB8808▶ &fВход с недопустимым адресом подключения!"
+
+unknown-command:
+  - "[message] &#FB8808▶ &fНеизвестная команда. Введите &#FFFF00/help &fдля списка команд."
+
+reloaded:
+  - "[message] &#FFFF00◆ &fКонфигурация &#FFFF00LPX &fуспешно &#FFFF00перезагружена&f!"
+  - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP"
+
+alerts-enabled:
+  - "[message] &#FFFF00◆ &fОповещения защиты &#FFFF00включены&f!"
+  - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP"
+
+alerts-disabled:
+  - "[message] &#FB8808▶ &fОповещения защиты &#FB8808выключены&f!"
+  - "[sound] BLOCK_ANVIL_LAND"
+
+alerts-format:
+  - "[message] &#FB8808▶ &fИгрок &#FFFF00{player} &fпровалил проверку &#FFFF00{check} {type} &8(&#FB8808{vl}&7/&#FFFF00{max-vl}&8)"
+
+alerts-hover:
+  - "&#FFFF00▶ &fОписание: &#FFFF00{description}"
+  - "&#FB8808◆ &fИнформация: &#FFFF00{infos}"
+
+help:
+  - "[message] "
+  - "[message] &#FFFF00▶ &fДоступные команды &#FFFF00LPX&f:"
+  - "[message] "
+  - "[message]   &#FFFF00◆ &f/lpx gui &8— &fоткрыть графическое меню"
+  - "[message]   &#FFFF00◆ &f/lpx alerts &8— &fпереключить режим оповещений"
+  - "[message]   &#FFFF00◆ &f/lpx reload &8— &fперезагрузить конфигурацию"
+  - "[message]   &#FFFF00◆ &f/lpx kick <игрок> [причина] &8— &fкикнуть нарушителя"
+  - "[message]   &#FFFF00◆ &f/lpx stats &8— &fстатистика пакетов игрока"
+  - "[message]   &#FFFF00◆ &f/lpx watchdog &8— &fмониторинг Netty потоков"
+  - "[message] "

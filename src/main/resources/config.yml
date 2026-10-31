@@ -1,0 +1,720 @@
+﻿license: "Black-Minecraft.com"
+force-fallback: false
+
+messages:
+  main-color: "&5"
+  second-color: "&d"
+
+  prefix: "%main-color%LPX >>"
+
+  kick: "&cYou are sending suspicious packets."
+  kick-alert: "%prefix% %second-color%%player% &7was kicked"
+
+  no-permission: "%prefix% &cInsufficient permissions &7(%permission%)"
+  invalid-arguments: "%prefix% &cInvalid arguments!"
+  injection-failure: "%prefix% &cInjection failure!"
+  update-found: "%prefix% &aAn update was found!"
+  null-address: "%prefix% &cYou are joining with an invalid address!"
+  unknown-command: "Unknown command. Type \"/help\" for help."
+
+  alerts:
+    permission: "lpx.alerts"
+    format: "%prefix% %second-color%%player% &7failed %main-color%%check% %type% &7(%vl%/%max-vl%)"
+    hover:
+      - "%main-color%Description:"
+      - "%second-color%%description%"
+      - ""
+      - "%main-color%Infos: %infos%"
+      - ""
+    enabled: "%prefix% &aAlerts enabled"
+    disabled: "%prefix% &cAlerts disabled"
+
+options:
+  silent-failures: false
+
+  alerts-on-join: true
+
+  kick-on-exception: true
+
+  disable-item-decoding: SMART
+
+  creative-exempts:
+    - "custom_name"
+    - "lore"
+    - "enchantments"
+
+  max-item-depth: 4
+
+  max-items-per-packet: 1458
+
+  hidden-command: false
+
+  bypass-permission: false
+
+  geyser: false
+
+  axiom: false
+
+  check-updates: true
+
+  bstats: true
+
+  clear-task:
+    enabled: true
+    delay: 300
+
+  printer:
+    automatic: false
+    place-threshold: 10
+    disable-delay: 3000
+    alerts: true
+    permission: "lpx.alerts.printer"
+    join: "%prefix% %second-color%%player% &7joined printer mode (%mode%)"
+    leave: "%prefix% %second-color%%player% &7left printer mode"
+
+  mechanics:
+    nether-portal-delay: 1000
+    max-arrow-velocity: 15
+    shears-cooldown: 500
+    break-close-inventory: false
+    trapdoor-rail-redstone: true
+    interact-container-delay: 100
+
+  alerts:
+    store: true
+    days: 14
+
+  server: unnamed
+
+  punish-delay: 1000
+
+  debug: false
+
+  log-cancelled-packets: true
+
+  item-strip:
+    enabled: false
+    set-slot: false
+    remove-components:
+      - "container"
+    remove-nbt:
+      - "BlockEntityTag"
+
+  external-config: false
+
+discord:
+  enabled: false
+  url: ""
+  color: "#00FFFF"
+  content:
+    - "**Player**: %player%"
+    - "**Check**: %check% %type%"
+    - "**VL**: %vl%/%max-vl%"
+    - "**Infos**: %infos%"
+    - "**Description**: %description%"
+
+packet-logger:
+  heavy-packet-threshold: 5000000
+
+  heavy-ignored-packets:
+    - PONG
+
+  enabled: false
+
+  output: FILE
+
+  netty-watchdog:
+    max-time: 50
+    check-frequency: 25
+    report-cooldown: 5000
+
+  player-mode: whitelist
+
+  players:
+    - Ytnoos
+
+  packet-mode: blacklist
+
+  packets:
+    - PLAYER_FLYING
+    - PLAYER_POSITION
+    - PLAYER_POSITION_AND_ROTATION
+    - PLAYER_ROTATION
+    - KEEP_ALIVE
+    - ANIMATION
+    - WINDOW_CONFIRMATION
+    - CLIENT_TICK_END
+
+checks:
+  netty:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        automatic: true
+        max: 98304
+  window:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 5
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      buffer:
+        max: 3
+        multiply: 0.25
+        decay: 1
+    b:
+      enabled: true
+      punish: true
+      max-vl: 5
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      buffer:
+        max: 3
+        multiply: 0.25
+        decay: 1
+    c:
+      enabled: true
+      punish: true
+      max-vl: 5
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    d:
+      enabled: true
+      punish: true
+      max-vl: 2
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+  item:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    b:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 50
+        max-modern: 100
+    c:
+      enabled: false
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        remove-ascii: true
+    d:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max-bytes: 255
+        resolved-tolerance: 3
+        resize: true
+    e:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        clear: true
+        occurrences:
+          - "translate,3"
+          - "with,3"
+          - "extra,15"
+          - "{,15"
+    f:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        replace: true
+    g:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max-translate: 1
+        max-keybind: 1
+    i:
+      enabled: true
+      punish: true
+      max-vl: 2
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        countThreshold: 768
+        max-depth: 64
+    j:
+      enabled: true
+      punish: true
+      max-vl: 2
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max-list: 12
+        max-array: 12
+  creative:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    b:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 127
+        min: 0
+    c:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 3000
+    d:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 16384
+    e:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        blacklist:
+          - "run_command"
+          - "translation.test.invalid"
+    f:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 64
+    g:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+  place:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 10
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      buffer:
+        max: 5
+        multiply: 0.5
+        decay: 1
+      options:
+        max: 100
+    b:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 70
+    c:
+      enabled: true
+      punish: true
+      max-vl: 5
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      buffer:
+        max: 5
+        multiply: 0.5
+        decay: 1
+      options:
+        max: 50
+  flood:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending too many packets. :<'
+      options:
+        max: 1100
+    b:
+      enabled: true
+      punish: true
+      max-vl: 6
+      min-vl: 3
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending too many packets. >:'
+      options:
+        limits:
+          ANIMATION:
+            max: 50
+            interval: 500
+            periods: 5
+            warnings: 2
+            action: flag
+          USE_ITEM:
+            max: 60
+            interval: 1000
+            periods: 5
+            warnings: 2
+            action: flag
+          PLAYER_BLOCK_PLACEMENT:
+            max: 14
+            interval: 100
+            periods: 6
+            warnings: 3
+            action: flag
+          CLICK_WINDOW:
+            - max: 20
+              interval: 200
+              periods: 10
+              warnings: 4
+              action: drop
+            - max: 5
+              interval: 80
+              periods: 6
+              warnings: 3
+              action: flag
+          CREATIVE_INVENTORY_ACTION:
+            - max: 20
+              interval: 200
+              periods: 10
+              warnings: 4
+              action: drop
+          PLAYER_POSITION:
+            max: 40
+            interval: 100
+            periods: 5
+            warnings: 3
+            action: flag
+          PLAYER_ROTATION:
+            max: 40
+            interval: 100
+            periods: 5
+            warnings: 3
+            action: flag
+          PLAYER_POSITION_AND_ROTATION:
+            max: 40
+            interval: 100
+            periods: 5
+            warnings: 3
+            action: flag
+          CRAFT_RECIPE_REQUEST:
+            max: 15
+            interval: 1000
+            periods: 2
+            warnings: 1
+            action: flag
+          TAB_COMPLETE:
+            max: 10
+            interval: 50
+            periods: 6
+            warnings: 3
+            action: flag
+          INTERACT_ENTITY:
+            max: 25
+            interval: 500
+            periods: 5
+            warnings: 3
+            action: flag
+          CHAT_COMMAND:
+            max: 5
+            interval: 500
+            periods: 5
+            warnings: 2
+            action: flag
+          PLAYER_DIGGING:
+            max: 40
+            interval: 500
+            periods: 6
+            warnings: 3
+            action: flag
+          UPDATE_SIGN:
+            max: 2
+            interval: 300
+            periods: 6
+            warnings: 2
+            action: drop
+    c:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending too many packets. :o'
+      options:
+        max: 20
+        reset-interval: 100
+        max-periods: 6
+        max-warnings: 3
+        big-threshold: 6000
+    d:
+      enabled: true
+      punish: true
+      max-vl: 4
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending too many packets. o:'
+      options:
+        max: 13
+        big-threshold: 4000
+        max-big: 6
+    f:
+      enabled: true
+      punish: true
+      max-vl: 2
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending too many packets. :$'
+      options:
+        max: 8
+    g:
+      enabled: true
+      punish: true
+      max-vl: 2
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending too many packets. :&'
+      options:
+        max: 70
+        interval: 250
+        periods: 5
+        warnings: 2
+        cancel: true
+  position:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    b:
+      enabled: true
+      punish: true
+      max-vl: 6
+      min-vl: 1
+      buffer:
+        max: 5
+        multiply: 0.5
+        decay: 0.05
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        delay: 2000
+        hard: false
+        ignore-fly: true
+    c:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 300000
+    d:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 1000000
+  payload:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    b:
+      enabled: true
+      punish: true
+      max-vl: 2
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        delay: 1000
+        max: 15
+    c:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    d:
+      enabled: true
+      punish: true
+      max-vl: 5
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    e:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    f:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+  book:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max: 15
+  tab:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 10
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        starts:
+          - "/to "
+          - "//to"
+          - "/calc "
+          - "//calc"
+        contains:
+          - "targetoffset"
+          - "for("
+          - "^(."
+          - "*."
+    b:
+      enabled: true
+      punish: false
+      max-vl: 1
+      min-vl: -1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        max-length: 256
+        characters:
+          - "["
+          - "]"
+          - "{"
+          - "}"
+          - "@"
+          - "="
+          - "nbt"
+  command:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 3
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+      options:
+        commands: #CREDITS TO: https://github.com/2lstudios-mc/ExploitFixer
+          - "//calc"
+          - "//calculate"
+          - "//eval"
+          - "//evaluate"
+          - "//solve"
+          - "/hd readtext"
+          - "/holo readtext"
+          - "/hologram readtext"
+          - "/holograms readtext"
+          - "/holographicdisplays readtext"
+          - "/pex promote"
+          - "/pex demote"
+          - "/promote"
+          - "/demote"
+          - "/execute"
+          - "/mv ^"
+          - "/mv help ^"
+          - "/mvhelp ^"
+          - "/mv <"
+          - "/mv help <"
+          - "/mvhelp <"
+          - "/$"
+  recipe:
+    a:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
+    b:
+      enabled: true
+      punish: true
+      max-vl: 1
+      min-vl: 1
+      punish-commands:
+        - 'lpx kick %player% &cYou are sending suspicious packets.'
