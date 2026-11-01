@@ -11,8 +11,8 @@ import java.util.List;
 public class TabCheckFlood extends AbstractCheckT<WrapperPlayClientTabComplete> {
     private static final List<String> DEFAULT_BLOCKED_PARTS =
         Arrays.asList("[", "]", "{", "}", "@", "=", "nbt");
-    private int maxLength = 256;
-    private List<String> blockedParts = new ArrayList<>(DEFAULT_BLOCKED_PARTS);
+    private int maxLength;
+    private List<String> blockedParts;
     private static String[] legacyState;
     public TabCheckFlood(ProtocolPlayer player, CheckOptions options) {
         super(player, options);

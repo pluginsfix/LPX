@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
 import java.util.function.Supplier;
@@ -52,15 +53,35 @@ public class FileLogger {
         if (!core.sZ(new Object[0]).Bw(new Object[0]).YI(new Object[0])) {
             return;
         }
-        executor.execute(() -> iG(0L, player, check, infos));
+        if (executor.isShutdown() || executor.isTerminated()) {
+            return;
+        }
+        try {
+            executor.execute(() -> iG(0L, player, check, infos));
+        } catch (RejectedExecutionException ignoredException) {
+        }
     }
     public void l1(Object[] args) {
         @SuppressWarnings("unchecked")
         Supplier<String> supplier = (Supplier<String>) args[0];
-        executor.execute(() -> ll(new Object[]{0L, supplier}));
+        if (executor.isShutdown() || executor.isTerminated()) {
+            return;
+        }
+        try {
+            executor.execute(() -> ll(new Object[]{0L, supplier}));
+        } catch (RejectedExecutionException ignoredException) {
+        }
     }
     public void Xu(Object[] ignored) {
-        executor.execute(() -> closeWriter(true));
+        if (executor.isShutdown() || executor.isTerminated()) {
+            closeWriter(true);
+            return;
+        }
+        try {
+            executor.execute(() -> closeWriter(true));
+        } catch (RejectedExecutionException ignoredException) {
+            closeWriter(true);
+        }
     }
     private void iG(Object... args) {
         ProtocolPlayer player = (ProtocolPlayer) args[1];

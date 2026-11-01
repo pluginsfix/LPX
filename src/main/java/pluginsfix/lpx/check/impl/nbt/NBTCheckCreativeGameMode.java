@@ -12,7 +12,7 @@ import com.github.retrooper.packetevents.protocol.nbt.NBTString;
 import org.bukkit.entity.Player;
 import org.bukkit.GameMode;
 public class NBTCheckCreativeGameMode extends AbstractCheckT<NBTDecodeEvent> {
-    private GameModeFilter d = GameModeFilter.DEFAULT;
+    private GameModeFilter d;
     private int maxStringLength;
     public NBTCheckCreativeGameMode(ProtocolPlayer player, CheckOptions options) {
         super(player, options);

@@ -67,9 +67,13 @@ public class PluginBootstrap {
         PacketEvents.getAPI().getEventManager().registerListener(new PacketHandler(core, dispatcher, 0L));
         Bukkit.getServicesManager().register(LPX.class, core, (Plugin) core.getPlugin(), ServicePriority.Normal);
         for (org.bukkit.entity.Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            com.github.retrooper.packetevents.protocol.player.User user = PacketEvents.getAPI().getPlayerManager().getUser(onlinePlayer);
-            if (user != null && user.getChannel() != null) {
-                core.getRegistry().injectUser(user, user.getChannel());
+            try {
+                com.github.retrooper.packetevents.protocol.player.User user = PacketEvents.getAPI().getPlayerManager().getUser(onlinePlayer);
+                if (user != null && user.getChannel() != null) {
+                    core.getRegistry().injectUser(user, user.getChannel());
+                }
+            } catch (Throwable throwable) {
+                core.getLogger().log(Level.WARNING, "Failed to inject player " + onlinePlayer.getName() + " on bootstrap", throwable);
             }
         }
     }

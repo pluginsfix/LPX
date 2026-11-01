@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.GameMode;
 public class PickBlockIncludeDataCheck extends AbstractCheckT<WrapperPlayClientPickItemFromBlock> {
-    private GameModeFilter gameModeFilter = GameModeFilter.DEFAULT;
+    private GameModeFilter gameModeFilter;
     public PickBlockIncludeDataCheck(ProtocolPlayer player, CheckOptions options) {
         super(player, options);
     }

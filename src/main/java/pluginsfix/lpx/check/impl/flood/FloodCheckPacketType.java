@@ -18,14 +18,18 @@ import java.util.Locale;
 import java.util.Map;
 import org.bukkit.configuration.ConfigurationSection;
 public class FloodCheckPacketType extends AbstractCheckT<PacketReceiveEvent> {
-    private final Map<String, List<PacketTypeRateRule>> rulesByPacket = new HashMap<>();
+    private Map<String, List<PacketTypeRateRule>> rulesByPacket;
     private static int X = 59;
     public FloodCheckPacketType(ProtocolPlayer player, CheckOptions options) {
         super(player, options);
     }
     @Override
     public void loadOptions() {
-        rulesByPacket.clear();
+        if (rulesByPacket == null) {
+            rulesByPacket = new HashMap<>();
+        } else {
+            rulesByPacket.clear();
+        }
         ConfigurationSection limitsSection = j_(new Object[0]).getConfigurationSection(
             kD(new Object[]{"limits", 0L})
         );

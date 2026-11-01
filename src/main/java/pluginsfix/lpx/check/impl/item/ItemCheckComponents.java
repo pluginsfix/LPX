@@ -17,8 +17,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.GameMode;
 public class ItemCheckComponents extends AbstractCheckT<ItemStackDecodeEvent> {
-    private GameModeFilter q = GameModeFilter.DEFAULT;
-    private Set<String> N = new HashSet<>();
+    private GameModeFilter q;
+    private Set<String> N;
     private boolean stripBlockedComponents;
     public ItemCheckComponents(ProtocolPlayer player, CheckOptions options) {
         super(player, options);
